@@ -115,6 +115,7 @@ class ClientFuzzer(BaseFuzzer):
         '''
         if stage == ClientFuzzer.STAGE_ANY:
             return True
+        stage = stage.decode()
         if fuzz_node.name.lower() == stage.lower():
             if self._index_in_path == len(self._fuzz_path) - 1:
                 return True
@@ -125,6 +126,7 @@ class ClientFuzzer(BaseFuzzer):
         last_index_in_path = len(self._fuzz_path) - 1
         if self._index_in_path < last_index_in_path:
             node = self._fuzz_path[self._index_in_path].dst
+            stage = stage.decode()
             if node.name.lower() == stage.lower():
                 self._index_in_path += 1
 
